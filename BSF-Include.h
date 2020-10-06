@@ -1,12 +1,12 @@
 /*==============================================================================
 Project: Bulk Synchronous Farm (BSF)
-Theme: Using BSF Skeleton for Cimmino Algorithm Implementation
-Module: BSF-Include.h ("Includ" Files for BSF Skeleton)
-Authors: Leonid B. Sokolinsky
-Creation Date: 23.05.2017
+Theme: BSF Cimmino
+Module: BSF-Include.h (Problem Independent "Include" Files)
+Author: Leonid B. Sokolinsky 
+
+This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky/BSF-skeleton)
 ==============================================================================*/
-#pragma once
 #include <mpi.h>
-#include <assert.h>
+#include <iomanip>
 #include <iostream>
-#include <stdlib.h>
+#include <omp.h>

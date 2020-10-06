@@ -1,21 +1,21 @@
 /*==============================================================================
 Project: Bulk Synchronous Farm (BSF)
-Theme: Using BSF Skeleton for Cimmino Algorithm Implementation
+Theme: BSF Cimmino
 Module: Problem-Parameters.h (Problem Parameters)
 Prefix: PP
 Author: Leonid B. Sokolinsky
-Creation Date: 09.04.2017
+This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky/BSF-skeleton)
 ==============================================================================*/
-#pragma once
-/* ========================= Compilation Modes ======================== */
-//#define NDEBUG
-
-#define PP_FLOAT_POINT_TYPE double
 
 //=========================== Problem Parameters =========================
-#define PP_N 10			// Dimension of space
-#define PP_SF	200			// Scale factor
-#define PP_M (2*PP_N+2)		// Number of inequations
+#define PP_N 4					// Dimension of space = Number of equations
+#define PP_INIT_POINT	100		// Value of all coordinates of initial approximation
+#define PP_LAMBDA		1		// Relaxation factor
+#define PP_MAX_ITER_COUNT 1000
+#define PP_EPS 1E-5				// Precision
 
-#define PP_ITER_COUNT	100
-#define PP_LAMBDA		1.9	// Relaxation factor
+//-------------------------- Outpoot Parameters ---------------------------
+#define PP_OUTPUT_LIMIT	11	// Number of Elements to output
+
+//-------------------------- Macroses ---------------------------
+#define PP_MIN(x,y) (x<y?x:y)

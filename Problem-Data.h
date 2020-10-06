@@ -1,16 +1,14 @@
 /*==============================================================================
 Project: Bulk Synchronous Farm (BSF)
-Theme: Using BSF Skeleton for Cimmino Algorithm Implementation
+Theme: BSF Cimmino
 Module: Problem-Data.h (Problem Data)
+Prefix: PP
 Author: Leonid B. Sokolinsky
-Creation Date: 09.04.2017
+This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky/BSF-skeleton)
 ==============================================================================*/
-#pragma once
-#include "Problem-Parameters.h"		// Problem Parameters 
+#include "Problem-Types.h"
 
 //========================== Problem variables ====================================
 
-//========================== Problem structures ====================================
-static PP_FLOAT_POINT_TYPE PD_A[PP_M][PP_N];	// Coefficients of inequations
-static PP_FLOAT_POINT_TYPE PD_b[PP_M];		// Vector of right parts
-static PP_FLOAT_POINT_TYPE PD_normSquare_a[PP_M];
+//========================== Problem data structures ==============================
+static PT_floatPoint_T PD_prev_x[PP_N];// Previous approximation

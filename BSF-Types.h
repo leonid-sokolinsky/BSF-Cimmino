@@ -1,24 +1,38 @@
 /*==============================================================================
 Project: Bulk Synchronous Farm (BSF)
-Theme: Using BSF Skeleton for Cimmino Algorithm Implementation
-Module: BSF-Types.h (BSF Types)
+Theme: BSF Cimmino
+Module: BSF-Types.h (Problem Independent Types)
 Prefix: BT
-Authors: Leonid B. Sokolinsky
-Creation Date: 09.04.2017
+Author: Leonid B. Sokolinsky 
+This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky/BSF-skeleton)
 ==============================================================================*/
 #pragma once
-#include "BSF-Include.h"
-
-struct BT_order_T {  
+#include "Problem-bsfTypes.h"	// Predefined BSF Problem Types
+//=========================== BSF Types ===============================
+struct BT_order_T {
 	char exit;		// true, if worker must stop
-	int index;		// index of the first MAP sublist element
-	int length;		// length of MAP sublist
-	PT_bsf_data_T data;
+	int jobCase;
+	int iterCounter;
+	PT_bsf_parameter_T parameter;
 };
 
-struct BT_extendedReduceElem_T { // Extended element type of reduce list
+struct BT_extendedReduceElem_T {// Extended element type of reduce list
 	PT_bsf_reduceElem_T elem;	// Element of reduce list
-	int counter;			// Counter
-	double t_w;
-	double t_A_w;
+	int reduceCounter;			// Reduce Counter
 };
+
+struct BT_extendedReduceElem_T_1 {// Extended element type of reduce list
+	PT_bsf_reduceElem_T_1 elem;	// Element of reduce list
+	int reduceCounter;			// Reduce Counter
+};
+
+struct BT_extendedReduceElem_T_2 {// Extended element type of reduce list
+	PT_bsf_reduceElem_T_2 elem;	// Element of reduce list
+	int reduceCounter;			// Reduce Counter
+};
+
+struct BT_extendedReduceElem_T_3 {// Extended element type of reduce list
+	PT_bsf_reduceElem_T_3 elem;	// Element of reduce list
+	int reduceCounter;			// Reduce Counter
+};
+
