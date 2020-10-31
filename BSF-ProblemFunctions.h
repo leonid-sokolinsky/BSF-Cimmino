@@ -143,8 +143,8 @@ void PC_bsf_SetListSize(
 void PC_bsf_SetInitParameter(
 	PT_bsf_parameter_T* parameter
 );
-void PC_bsf_SetMapSubList(
-	PT_bsf_mapElem_T* sublist, 
-	int sublistLength, 
-	int offset
+
+void PC_bsf_SetMapListElem(
+	PT_bsf_mapElem_T* elem, 
+	int i
 );

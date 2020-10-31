@@ -480,15 +480,20 @@ static void BC_Init(bool* success) {// Performs the memory allocation and the in
 		if (BD_mapSubList == NULL) {
 			*success = false;
 			return;
-		};
+		}
 
+		int first, last;
 #ifdef PP_BSF_FRAGMENTED_MAP_LIST
-		PC_bsf_SetMapSubList(BD_mapSubList, BD_sublistSize[BD_rank], BD_offset[BD_rank]);
+		first = BD_offset[BD_rank];
+		last = BD_offset[BD_rank] + BD_sublistSize[BD_rank] - 1;
 #else
-		PC_bsf_SetMapSubList(BD_mapSubList, BD_listSize, 0);
+		first = 0;
+		last = BD_listSize - 1;
 #endif
-	};
-};
+		for(int i=first; i <= last; i++)
+			PC_bsf_SetMapListElem(&BD_mapSubList[i - first], i);
+	}
+}
 
 static void BC_MpiRun() {
 	int rc;

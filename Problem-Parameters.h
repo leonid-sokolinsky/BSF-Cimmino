@@ -8,7 +8,7 @@ This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky
 ==============================================================================*/
 
 //=========================== Problem Parameters =========================
-#define PP_N 4					// Dimension of space = Number of equations
+#define PP_N 32				// Dimension of space = Number of equations
 #define PP_INIT_POINT	100		// Value of all coordinates of initial approximation
 #define PP_LAMBDA		1		// Relaxation factor
 #define PP_MAX_ITER_COUNT 1000

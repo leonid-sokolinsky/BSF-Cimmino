@@ -186,20 +186,14 @@ void PC_bsf_SetInitParameter(PT_bsf_parameter_T* parameter) {
 		parameter->x[i] = PP_INIT_POINT;
 }
 
-void PC_bsf_SetMapSubList(PT_bsf_mapElem_T* sublist, int sublistLength, int offset) {
-	for (int i = 0; i < sublistLength; i++) {
-		for (int j = 0; j < offset + i; j++)
-			sublist[i].a[j] = 1;
-		sublist[i].a[offset + i] = (PT_floatPoint_T)((offset + i) * 2);
-		for (int j = offset + i + 1; j < PP_N; j++)
-			sublist[i].a[j] = 0;
-		sublist[i].b = (PT_floatPoint_T)(3 * (offset + i));
-		if (offset == 0) {
-			sublist[0].a[0] = 1;
-			sublist[0].b = 1;
-		}
-		sublist[i].normSquare = NormSquare(sublist[i].a);
-	}
+void PC_bsf_SetMapListElem(PT_bsf_mapElem_T* elem, int i) {
+	for (int j = 0; j < i; j++)
+		elem->a[j] = 1;
+	for (int j = i + 1; j < PP_N; j++)
+		elem->a[j] = 0;
+	elem->a[i] = 1;
+	elem->b = i + 1;
+	elem->normSquare = NormSquare(elem->a);
 }
 
 //----------------------- Assigning Values to BSF-skeleton Variables (Do not modify!) -----------------------
@@ -214,7 +208,7 @@ void PC_bsfAssignSublistLength(int value) { BSF_sv_sublistLength = value; }
 
 //----------------------------- User functions -----------------------------
 static bool StopCond(PT_bsf_parameter_T* parameter) {// Calculates the stop condition
-	PT_point_T difference; // Difference between current and previous approximations
+	PT_vector_T difference; // Difference between current and previous approximations
 
 #ifdef PP_MAX_ITER_COUNT
 	if (BSF_sv_iterCounter > PP_MAX_ITER_COUNT) {
@@ -231,14 +225,14 @@ static bool StopCond(PT_bsf_parameter_T* parameter) {// Calculates the stop cond
 		return false;
 }
 
-static PT_floatPoint_T DotProduct(PT_point_T x, PT_point_T y) {
+static PT_floatPoint_T DotProduct(PT_vector_T x, PT_vector_T y) {
 	PT_floatPoint_T sum = 0;
 	for (int j = 0; j < PP_N; j++)
 		sum += x[j] * y[j];
 	return sum;
 };
 
-static PT_floatPoint_T NormSquare(PT_point_T x) {
+static PT_floatPoint_T NormSquare(PT_vector_T x) {
 	PT_floatPoint_T sum = 0;
 	for (int j = 0; j < PP_N; j++)
 		sum += x[j] * x[j];
