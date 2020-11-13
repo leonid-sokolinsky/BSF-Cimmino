@@ -26,7 +26,7 @@ void PC_bsf_CopyParameter(PT_bsf_parameter_T parameterIn, PT_bsf_parameter_T* pa
 };
 
 void PC_bsf_MapF(PT_bsf_mapElem_T* mapElem, PT_bsf_reduceElem_T* reduceElem, int* success) {
-	PT_floatPoint_T factor;
+	PT_float_T factor;
 
 	factor = (mapElem->b - DotProduct(BSF_sv_parameter.x, mapElem->a)) / mapElem->normSquare;
 	for (int j = 0; j < PP_N; j++)
@@ -125,6 +125,17 @@ void PC_bsf_ParametersOutput(PT_bsf_parameter_T parameter) {
 
 	cout << "Dimension: N = " << PP_N << endl;
 	cout << "Eps_Square = " << PP_EPS << endl;
+#ifdef PP_MATRIX_OUTPUT
+	cout << "------- Matrix A & Column b & Norm a-------" << endl;
+
+	for (int i = 0; i < PP_N; i++) {
+		PT_float_T a[PP_N];
+		for (int j = 0; j < PP_N; j++)
+			cout << setw(7) << (a[j] = A(i, j));
+		cout << setw(7) << b(i) << setw(7) << NormSquare(a) << endl;
+	};
+	cout << endl;
+#endif // PP_MATRIX_OUTPUT
 	cout << "Initial x: "; for (int j = 0; j < PP_MIN(PP_OUTPUT_LIMIT, PP_N); j++) cout << setw(7) << parameter.x[j]; cout << (PP_OUTPUT_LIMIT < PP_N ? "..." : "") << endl;
 	cout << "-------------------------------------------" << endl;
 }
@@ -187,12 +198,9 @@ void PC_bsf_SetInitParameter(PT_bsf_parameter_T* parameter) {
 }
 
 void PC_bsf_SetMapListElem(PT_bsf_mapElem_T* elem, int i) {
-	for (int j = 0; j < i; j++)
-		elem->a[j] = 1;
-	for (int j = i + 1; j < PP_N; j++)
-		elem->a[j] = 0;
-	elem->a[i] = 1;
-	elem->b = i + 1;
+	for (int j = 0; j < PP_N; j++)
+		elem->a[j] = A(i,j);
+	elem->b = b(i);
 	elem->normSquare = NormSquare(elem->a);
 }
 
@@ -225,16 +233,38 @@ static bool StopCond(PT_bsf_parameter_T* parameter) {// Calculates the stop cond
 		return false;
 }
 
-static PT_floatPoint_T DotProduct(PT_vector_T x, PT_vector_T y) {
-	PT_floatPoint_T sum = 0;
+static PT_float_T DotProduct(PT_vector_T x, PT_vector_T y) {
+	PT_float_T sum = 0;
 	for (int j = 0; j < PP_N; j++)
 		sum += x[j] * y[j];
 	return sum;
-};
+}
 
-static PT_floatPoint_T NormSquare(PT_vector_T x) {
-	PT_floatPoint_T sum = 0;
+static PT_float_T NormSquare(PT_vector_T x) {
+	PT_float_T sum = 0;
 	for (int j = 0; j < PP_N; j++)
 		sum += x[j] * x[j];
 	return sum;
-};
+}
+
+inline PT_float_T A(int i, int j) {
+	if (j > i) return 0;
+	if (j < i) return 1;
+	if (j == 0) return 1;
+	return 2 * i;
+}
+
+inline PT_float_T b(int i) {
+	if (i == 0) return 1;
+	return i + 2 * i;
+}
+
+/*inline PT_float_T A(int i, int j) {
+	if (j > i) return 0;
+	return 1;
+}
+
+inline PT_float_T b(int i) {
+	return i + 1;
+}/**/
+

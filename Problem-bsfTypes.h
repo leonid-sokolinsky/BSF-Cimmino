@@ -11,15 +11,15 @@ This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky
 
 //=========================== BSF Types =========================
 struct PT_bsf_parameter_T {			
-	PT_point_T x;	// Current approximation
+	PT_vector_T x;	// Current approximation
 };
 struct PT_bsf_mapElem_T {		
-	PT_point_T a;		// Left side of the equation a[0]*x_1+...+a[n-1]*x_n = b
-	PT_floatPoint_T b;	// Right side of the equation a[0]*x_1+...+a[n-1]*x_n = b
-	PT_floatPoint_T normSquare; // normSquare = a[0]*a[0]+...+a[n-1]*a[n-1]
+	PT_vector_T a;		// Left side of the equation a[0]*x_1+...+a[n-1]*x_n = b
+	PT_float_T b;	// Right side of the equation a[0]*x_1+...+a[n-1]*x_n = b
+	PT_float_T normSquare; // normSquare = a[0]*a[0]+...+a[n-1]*a[n-1]
 };
 struct PT_bsf_reduceElem_T {		
-	PT_point_T projection;		// ProjectionVector of point onto hyperplane		
+	PT_vector_T projection;		// ProjectionVector of point onto hyperplane		
 };
 
 struct PT_bsf_reduceElem_T_1 {				
