@@ -258,13 +258,3 @@ inline PT_float_T b(int i) {
 	if (i == 0) return 1;
 	return i + 2 * i;
 }
-
-/*inline PT_float_T A(int i, int j) {
-	if (j > i) return 0;
-	return 1;
-}
-
-inline PT_float_T b(int i) {
-	return i + 1;
-}/**/
-
