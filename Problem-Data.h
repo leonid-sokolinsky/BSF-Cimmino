@@ -11,4 +11,4 @@ This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky
 //========================== Problem variables ====================================
 
 //========================== Problem data structures ==============================
-static PT_floatPoint_T PD_prev_x[PP_N];// Previous approximation
+static PT_vector_T PD_prev_x;// Previous approximation

@@ -9,4 +9,3 @@ This source code is a part of BSF Skeleton (https://github.com/leonid-sokolinsky
 #include <iostream>
 #include <math.h>
 #include <omp.h>
-#include <assert.h>

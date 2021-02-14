@@ -1,6 +1,6 @@
 /*==============================================================================
 Project: Bulk Synchronous Farm (BSF)
-Theme: BSF Cimmino
+Theme: BSF Skeleton
 Module: BSF-Types.h (Problem Independent Types)
 Prefix: BT
 Author: Leonid B. Sokolinsky 
@@ -35,4 +35,3 @@ struct BT_extendedReduceElem_T_3 {// Extended element type of reduce list
 	PT_bsf_reduceElem_T_3 elem;	// Element of reduce list
 	int reduceCounter;			// Reduce Counter
 };
-
